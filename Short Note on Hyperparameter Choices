@@ -1,0 +1,18 @@
+Short Note on Hyperparameter Choices
+In this project, we trained an InceptionV3-based deep learning model to classify MNIST digits from a CSV-based dataset. Several key hyperparameters were selected to ensure stable and efficient training:
+
+Learning Rate (lr = 0.0001):
+A small learning rate was chosen to prevent large gradient updates, which is especially important when fine-tuning a pre-trained model like InceptionV3. This helped maintain stable convergence and preserved the pre-learned ImageNet features.
+
+Batch Size (32):
+A moderate batch size was used to balance between memory efficiency and gradient stability. With a batch size of 32, the model could effectively generalize without overfitting quickly or causing large memory usage.
+
+Epochs (5):
+Although only 5 epochs were used, the model achieved strong validation accuracy (~82%). This is sufficient for demonstration and evaluation purposes, but additional training epochs could potentially further improve performance.
+
+Optimizer (Adam):
+The Adam optimizer was selected for its adaptive learning rate capabilities, which accelerated convergence and worked well in conjunction with the pre-trained model.
+
+Auxiliary Loss:
+InceptionV3 includes an auxiliary classifier; we used a weighted sum of the main and auxiliary outputs during training to provide additional gradient flow, improving model stability in early training stages.
+
