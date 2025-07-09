@@ -1,0 +1,2 @@
+# -EUS-Image-Based-Risk-Prediction-System-for-Chronic-Pancreatitis-Using-CNN-PROSPECT-
+A PyTorch pipeline for classifying handwritten digits from a CSV-based MNIST dataset using InceptionV3. Images are extracted, transformed to grayscale, resized, and passed through a fine-tuned pretrained model. Includes custom dataset, transfer learning, auxiliary loss, and evaluation via accuracy &amp; F1-score.
