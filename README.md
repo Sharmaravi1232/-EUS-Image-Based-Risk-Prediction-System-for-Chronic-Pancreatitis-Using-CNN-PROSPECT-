@@ -1,62 +1,102 @@
-# -EUS-Image-Based-Risk-Prediction-System-for-Chronic-Pancreatitis-Using-CNN-PROSPECT-
-.A PyTorch pipeline for classifying handwritten digits from a CSV-based MNIST dataset using InceptionV3. Images are extracted, transformed to grayscale, resized, and passed through a fine-tuned pretrained model. . Includes custom dataset, transfer learning, auxiliary loss, and evaluation via accuracy &amp; F1-score.
-Overview
-. PROSPECT is a deep learning-based medical imaging pipeline designed to classify and assess chronic pancreatitis risk using Endoscopic Ultrasound (EUS) images. This system uses a customized InceptionV3 CNN architecture, fine-tuned on image data derived from a CSV-formatted MNIST structure, simulating medical images.
-. Features
-. Custom Dataset Class for CSV-based grayscale image extraction
+🧠 EUS Image-Based Risk Prediction System for Chronic Pancreatitis Using CNN (PROSPECT)
+A deep learning-based pipeline for Endoscopic Ultrasound (EUS) image classification, designed to predict chronic pancreatitis risk using a fine-tuned InceptionV3 CNN architecture.
 
-. InceptionV3 Architecture with auxiliary outputs for enhanced learning
+📌 Overview
+PROSPECT is a PyTorch-based medical imaging system that classifies and assesses risk for chronic pancreatitis using grayscale ultrasound images. It simulates real-world scenarios using a CSV-formatted dataset inspired by the MNIST structure and includes transfer learning, custom preprocessing, auxiliary loss training, and model evaluation.
 
-. Image Preprocessing pipeline to convert and normalize grayscale data
+🚀 Key Features
+🗃️ Custom Dataset Class for CSV-based grayscale image extraction
 
- . Transfer Learning on pretrained ImageNet weights
+🧠 InceptionV3 CNN Architecture with auxiliary outputs for improved learning
 
- . Evaluation Metrics: Accuracy and Weighted F1-Score
+🧪 Transfer Learning on pretrained ImageNet weights
 
-.  Model Checkpointing based on best validation accuracy
+🧼 Image Preprocessing: Resizing, normalization, grayscale-to-RGB conversion
 
-.  Dataset
-. Source: CSV-formatted dataset (mnist_train_small.csv)
+🎯 Evaluation Metrics: Accuracy & Weighted F1-Score
 
-. Each row includes a label followed by 784 pixel values representing a 28x28 grayscale image
+💾 Model Checkpointing: Save best-performing model
 
-. Images are reshaped, converted to PIL format, and resized to 299x299 for model input.
+📦 Hugging Face Deployment: Fully deployable as an interactive inference tool
 
-. Tech Stack
-. Python 3.11+
+📚 Dataset
+Source: mnist_train_small.csv
 
-. PyTorch
+Format:
+Each row contains:
 
-. Torchvision
+1 label (0–9)
 
-. scikit-learn
+784 pixel values representing a 28x28 grayscale image
 
-. PIL (Pillow)
+Preprocessing:
 
-. Pandas, NumPy
- 1. Load dataset from CSV
- 2. Preprocess images (Resize, Normalize, Grayscale to RGB)
- 3. Load InceptionV3 model with ImageNet weights
- 4. Modify FC layers for 10-class classification
- 5. Train using auxiliary loss
- 6. Evaluate using accuracy and F1 score
-    Evaluation
-. Metric 1: Accuracy
+Convert row to 28x28 numpy array
 
-. Metric 2: F1-Score (Weighted)
+Transform to PIL Image and resize to 299×299 (required by InceptionV3)
 
-. Validation occurs after each epoch with checkpointing of best model weights.
+Normalize using ImageNet mean and std
 
-. Model Output
-. Best-performing model is saved as:
+Convert grayscale to RGB
 
-. bash
-. Copy
-. Edit
-. best_inception_mnist.pth
-. References
-. PyTorch InceptionV3 Documentation
+🏗️ Model Architecture
+Base: InceptionV3 (pretrained on ImageNet)
 
-. MNIST Dataset Format
+Modified final FC layer for 10-class classification
 
+Auxiliary classifiers enabled for intermediate supervision
+
+Optimizer: Adam / SGD
+
+Loss: CrossEntropy with auxiliary loss weighted
+
+🎓 Training
+Runs with early stopping and model checkpointing
+
+Validation runs after each epoch
+
+Logs metrics:
+
+Accuracy
+
+Weighted F1-Score
+
+Final model saved as:
+
+Copy
+Edit
+best_inception_mnist.pth
+📊 Evaluation Metrics
+✅ Metric 1: Overall Accuracy
+
+✅ Metric 2: Weighted F1-Score (to address class imbalance)
+
+⚙️ Tech Stack
+Python 3.11+
+
+PyTorch
+
+Torchvision
+
+scikit-learn
+
+Pillow (PIL)
+
+Pandas
+
+NumPy
+
+🌐 Deployment on Hugging Face Spaces
+The model is deployed as a live interactive web app using Gradio on Hugging Face Spaces.
+
+🔗 Live App:
+
+🚀 Deployment Details:
+Built using Gradio as frontend
+
+app.py defines the inference pipeline
+
+requirements.txt includes all dependencies
+
+Model (best_inception_mnist.pth) loaded at runtime
 
